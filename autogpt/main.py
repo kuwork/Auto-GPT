@@ -110,10 +110,9 @@ def run_auto_gpt(
             logger.typewriter_log(
                 "WARNING: ",
                 Fore.RED,
-                "You are running on an older version of Python. "
-                "Some people have observed problems with certain "
-                "parts of Auto-GPT with this version. "
-                "Please consider upgrading to Python 3.10 or higher.",
+                "您正在运行旧版本的 Python"
+                "有些人在使用这个版本时发现了 Auto-GPT 的某些部分存在问题。"
+                "请考虑升级到 Python 3.10 或更高版本。",
             )
 
     if install_plugin_deps:
@@ -170,19 +169,19 @@ def run_auto_gpt(
     if cfg.chat_messages_enabled:
         for plugin in cfg.plugins:
             if hasattr(plugin, "can_handle_report") and plugin.can_handle_report():
-                logger.info(f"Loaded plugin into logger: {plugin.__class__.__name__}")
+                logger.info(f"加载插件到日志: {plugin.__class__.__name__}")
                 logger.chat_plugins.append(plugin)
 
     # Initialize memory and make sure it is empty.
     # this is particularly important for indexing and referencing pinecone memory
     memory = get_memory(cfg, init=True)
     logger.typewriter_log(
-        "Using memory of type:", Fore.GREEN, f"{memory.__class__.__name__}"
+        "使用记忆类型:", Fore.GREEN, f"{memory.__class__.__name__}"
     )
-    logger.typewriter_log("Using Browser:", Fore.GREEN, cfg.selenium_web_browser)
+    logger.typewriter_log("使用浏览器:", Fore.GREEN, cfg.selenium_web_browser)
     system_prompt = ai_config.construct_full_prompt()
     if cfg.debug_mode:
-        logger.typewriter_log("Prompt:", Fore.GREEN, system_prompt)
+        logger.typewriter_log("提示:", Fore.GREEN, system_prompt)
 
     agent = Agent(
         ai_name=ai_name,

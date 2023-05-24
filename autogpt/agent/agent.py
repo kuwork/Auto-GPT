@@ -122,11 +122,11 @@ class Agent:
                 and self.cycle_count > cfg.continuous_limit
             ):
                 logger.typewriter_log(
-                    "Continuous Limit Reached: ", Fore.YELLOW, f"{cfg.continuous_limit}"
+                    "连续达到限制: ", Fore.YELLOW, f"{cfg.continuous_limit}"
                 )
                 break
             # Send message to AI, get response
-            with Spinner("Thinking... ", plain_output=cfg.plain_output):
+            with Spinner("正在思考... ", plain_output=cfg.plain_output):
                 assistant_reply = chat_with_ai(
                     cfg,
                     self,
@@ -152,7 +152,7 @@ class Agent:
                     )
                     command_name, arguments = get_command(assistant_reply_json)
                     if cfg.speak_mode:
-                        say_text(f"I want to execute {command_name}")
+                        say_text(f"我要执行 {command_name}")
 
                     arguments = self._resolve_pathlike_command_args(arguments)
 
@@ -167,10 +167,10 @@ class Agent:
             )
 
             logger.typewriter_log(
-                "NEXT ACTION: ",
+                "下一步操作: ",
                 Fore.CYAN,
-                f"COMMAND = {Fore.CYAN}{command_name}{Style.RESET_ALL}  "
-                f"ARGUMENTS = {Fore.CYAN}{arguments}{Style.RESET_ALL}",
+                f"指令 = {Fore.CYAN}{command_name}{Style.RESET_ALL}  "
+                f"参数 = {Fore.CYAN}{arguments}{Style.RESET_ALL}",
             )
 
             if not cfg.continuous_mode and self.next_action_count == 0:
@@ -179,23 +179,23 @@ class Agent:
                 # to exit
                 self.user_input = ""
                 logger.info(
-                    "Enter 'y' to authorise command, 'y -N' to run N continuous commands, 's' to run self-feedback commands, "
-                    "'n' to exit program, or enter feedback for "
+                    "输入'y'授权命令，'y -N'运行N个连续命令, 's' 运行自反馈命令, "
+                    "'n' 退出程序, 或者 输入反馈内容给 "
                     f"{self.ai_name}..."
                 )
                 while True:
                     if cfg.chat_messages_enabled:
-                        console_input = clean_input("Waiting for your response...")
+                        console_input = clean_input("等待您的反馈...")
                     else:
                         console_input = clean_input(
-                            Fore.MAGENTA + "Input:" + Style.RESET_ALL
+                            Fore.MAGENTA + "输入:" + Style.RESET_ALL
                         )
                     if console_input.lower().strip() == cfg.authorise_key:
                         user_input = "GENERATE NEXT COMMAND JSON"
                         break
                     elif console_input.lower().strip() == "s":
                         logger.typewriter_log(
-                            "-=-=-=-=-=-=-= THOUGHTS, REASONING, PLAN AND CRITICISM WILL NOW BE VERIFIED BY AGENT -=-=-=-=-=-=-=",
+                            "-=-=-=-=-=-=-= 想法、推理、计划和意见现在将由代理人验证 -=-=-=-=-=-=-=",
                             Fore.GREEN,
                             "",
                         )
@@ -204,7 +204,7 @@ class Agent:
                             thoughts, cfg.fast_llm_model
                         )
                         logger.typewriter_log(
-                            f"SELF FEEDBACK: {self_feedback_resp}",
+                            f"自反馈: {self_feedback_resp}",
                             Fore.YELLOW,
                             "",
                         )
@@ -212,7 +212,7 @@ class Agent:
                         command_name = "self_feedback"
                         break
                     elif console_input.lower().strip() == "":
-                        logger.warn("Invalid input format.")
+                        logger.warn("输入格式无效.")
                         continue
                     elif console_input.lower().startswith(f"{cfg.authorise_key} -"):
                         try:
@@ -222,8 +222,8 @@ class Agent:
                             user_input = "GENERATE NEXT COMMAND JSON"
                         except ValueError:
                             logger.warn(
-                                "Invalid input format. Please enter 'y -n' where n is"
-                                " the number of continuous tasks."
+                                "输入格式无效. 请输入 'y -n' 其中 n 是"
+                                " 连续运行的任务数量."
                             )
                             continue
                         break
@@ -244,26 +244,26 @@ class Agent:
 
                 if user_input == "GENERATE NEXT COMMAND JSON":
                     logger.typewriter_log(
-                        "-=-=-=-=-=-=-= COMMAND AUTHORISED BY USER -=-=-=-=-=-=-=",
+                        "-=-=-=-=-=-=-= 用户授权的命令 -=-=-=-=-=-=-=",
                         Fore.MAGENTA,
                         "",
                     )
                 elif user_input == "EXIT":
-                    logger.info("Exiting...")
+                    logger.info("退出中...")
                     break
             else:
                 # Print authorized commands left value
                 logger.typewriter_log(
-                    f"{Fore.CYAN}AUTHORISED COMMANDS LEFT: {Style.RESET_ALL}{self.next_action_count}"
+                    f"{Fore.CYAN}用户授权的命令 剩余: {Style.RESET_ALL}{self.next_action_count}"
                 )
 
             # Execute command
             if command_name is not None and command_name.lower().startswith("error"):
-                result = f"Could not execute command: {arguments}"
+                result = f"无法执行命令: {arguments}"
             elif command_name == "human_feedback":
-                result = f"Human feedback: {user_input}"
+                result = f"人工反馈: {user_input}"
             elif command_name == "self_feedback":
-                result = f"Self feedback: {user_input}"
+                result = f"人工反馈: {user_input}"
             else:
                 for plugin in cfg.plugins:
                     if not plugin.can_handle_pre_command():
@@ -278,7 +278,7 @@ class Agent:
                     self.config.prompt_generator,
                     config=cfg,
                 )
-                result = f"Command {command_name} returned: " f"{command_result}"
+                result = f"命令 {command_name} 返回了: " f"{command_result}"
 
                 result_tlength = count_string_tokens(
                     str(command_result), cfg.fast_llm_model
@@ -287,8 +287,8 @@ class Agent:
                     str(self.history.summary_message()), cfg.fast_llm_model
                 )
                 if result_tlength + memory_tlength + 600 > cfg.fast_token_limit:
-                    result = f"Failure: command {command_name} returned too much output. \
-                        Do not execute this command again with the same arguments."
+                    result = f"失败: 命令 {command_name} 返回太多内容. \
+                        请不要再用相同的参数执行这个指令."
 
                 for plugin in cfg.plugins:
                     if not plugin.can_handle_post_command():
@@ -303,9 +303,9 @@ class Agent:
                 self.history.add("system", result, "action_result")
                 logger.typewriter_log("SYSTEM: ", Fore.YELLOW, result)
             else:
-                self.history.add("system", "Unable to execute command", "action_result")
+                self.history.add("system", "无法执行命令", "action_result")
                 logger.typewriter_log(
-                    "SYSTEM: ", Fore.YELLOW, "Unable to execute command"
+                    "SYSTEM: ", Fore.YELLOW, "无法执行命令"
                 )
 
     def _resolve_pathlike_command_args(self, command_args):

@@ -51,12 +51,12 @@ def clean_input(prompt: str = "", talk=False):
                 return plugin_response
 
         # ask for input, default when just pressing Enter is y
-        logger.info("Asking user via keyboard...")
+        logger.info("通过键盘询问用户...")
         answer = input(prompt)
         return answer
     except KeyboardInterrupt:
-        logger.info("You interrupted Auto-GPT")
-        logger.info("Quitting...")
+        logger.info("您中断了AutoGPT")
+        logger.info("退出中...")
         exit(0)
 
 
@@ -65,14 +65,14 @@ def validate_yaml_file(file: str):
         with open(file, encoding="utf-8") as fp:
             yaml.load(fp.read(), Loader=yaml.FullLoader)
     except FileNotFoundError:
-        return (False, f"The file {Fore.CYAN}`{file}`{Fore.RESET} wasn't found")
+        return (False, f"The file {Fore.CYAN}`{file}`{Fore.RESET} 没有找到")
     except yaml.YAMLError as e:
         return (
             False,
-            f"There was an issue while trying to read with your AI Settings file: {e}",
+            f"在尝试读取您的AI设置文件时出现问题：{e}",
         )
 
-    return (True, f"Successfully validated {Fore.CYAN}`{file}`{Fore.RESET}!")
+    return (True, f"成功验证了 {Fore.CYAN}`{file}`{Fore.RESET}!")
 
 
 def readable_file_size(size, decimal_places=2):
@@ -117,8 +117,8 @@ def get_latest_bulletin() -> tuple[str, bool]:
         current_bulletin = open(
             "data/CURRENT_BULLETIN.md", "r", encoding="utf-8"
         ).read()
-    new_bulletin = get_bulletin_from_web()
-    is_new_news = new_bulletin != "" and new_bulletin != current_bulletin
+    new_bulletin = "" # get_bulletin_from_web()
+    is_new_news = False #new_bulletin != "" and new_bulletin != current_bulletin
 
     news_header = Fore.YELLOW + "Welcome to Auto-GPT!\n"
     if new_bulletin or current_bulletin:

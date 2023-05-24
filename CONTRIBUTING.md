@@ -1,14 +1,14 @@
-We maintain a knowledgebase at this [wiki](https://github.com/Significant-Gravitas/Nexus/wiki)
+我们在这个[wiki](https://github.com/Significant-Gravitas/Nexus/wiki)上维护着一个知识库。
 
-We would like to say "We value all contributions". After all, we are an open-source project, so we should say something fluffy like this, right?
+我们想说“我们珍视所有的贡献”。毕竟，我们是一个开源项目，所以我们应该说一些像这样的蜜汁话，对吗？
 
-However the reality is that some contributions are SUPER-valuable, while others create more trouble than they are worth and actually _create_ work for the core team.
+但事实是，有些贡献非常有价值，而其他一些贡献则会带来更多麻烦，实际上会为核心团队带来更多工作。
 
-If you wish to contribute, please look through the wiki [contributing](https://github.com/Significant-Gravitas/Nexus/wiki/Contributing) page.
+如果您想要贡献，请查看维基的[contributing](https://github.com/Significant-Gravitas/Nexus/wiki/Contributing)页面。
 
-If you wish to involve with the project (beyond just contributing PRs), please read the wiki [catalyzing](https://github.com/Significant-Gravitas/Nexus/wiki/Catalyzing) page.
+如果您想要参与到项目中（不仅仅是提交PR），请阅读维基的[catalyzing](https://github.com/Significant-Gravitas/Nexus/wiki/Catalyzing)页面。
 
-In fact, why not just look through the whole wiki (it's only a few pages) and hop on our discord (you'll find it in the wiki).
+事实上，为什么不直接浏览整个wiki（只有几页），并加入我们的Discord（你会在维基中找到它）呢？
 
-❤️ & 🔆
-The team @ Auto-GPT
+❤️ & 🔆  
+Auto-GPT团队

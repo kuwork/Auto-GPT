@@ -1,47 +1,36 @@
-# Website and Documentation Site 📰📖
-Check out *https://agpt.co*, the official news & updates site for Auto-GPT!
-The documentation also has a place here, at *https://docs.agpt.co*
+# 网站和文档站点 📰📖
+请查看*https://agpt.co*，这是Auto-GPT官方的新闻和更新站点！文档也在这里，位于*https://docs.agpt.co*
 
-# For contributors 👷🏼
-Since releasing v0.3.0, we are working on re-architecting the Auto-GPT core to make
-it more extensible and to make room for structural performance-oriented R&D.
-In the meantime, we have less time to process incoming pull requests and issues,
-so we focus on high-value contributions:
- * significant bugfixes
- * *major* improvements to existing functionality and/or docs (so no single-typo fixes)
- * contributions that help us with re-architecture and other roadmapped items
-We have to be somewhat selective in order to keep making progress, but this does not
-mean you can't contribute. Check out the contribution guide on our wiki:
+# 对于贡献者 👷🏼
+自发布v0.3.0以来，我们一直在重新构建Auto-GPT核心，使其更具可扩展性，并为结构性能导向的研发腾出空间。
+同时，我们有较少的时间处理传入的拉取请求和问题，因此我们专注于高价值的贡献：
+ * 重大的错误修复
+ * 对现有功能和/或文档的*主要*改进（因此不包括单个拼写错误修复）
+ * 对我们进行重新架构和其他路线图条目的贡献
+为了不断取得进展，我们必须有所选择，但这并不意味着您无法做出贡献。请查看我们维基上的贡献指南:
 https://github.com/Significant-Gravitas/Auto-GPT/wiki/Contributing
 
-# 🚀 v0.4.0 Release 🚀
-Two weeks and 76 pull requests have passed since v0.3.1, and we are happy to announce
-the release of v0.4.0!
+# 🚀 v0.4.0 发布 🚀
+自v0.3.1版本发布以来，两周时间过去了，共有76个请求合并，我们很高兴地宣布
+发布了v0.4.0！
 
-Highlights and notable changes since v0.3.0:
+自v0.3.0以来的亮点和显着变化：
 
-## ⚠️ Command `send_tweet` is REMOVED
-Twitter functionality (and more) is now covered by plugins.
+## ⚠️ 命令 `send_tweet` 已被删除
+Twitter 功能（及更多功能）现在已由插件覆盖。
 
-## ⚠️ Memory backend deprecation 💾
-The Milvus, Pinecone and Weaviate memory backends were rendered incompatible
-by work on the memory system, and have been removed in `master`. The Redis
-memory store was also temporarily removed; we will merge a new implementation ASAP.
-Whether built-in support for the others will be added back in the future is subject to
-discussion, feel free to pitch in: https://github.com/Significant-Gravitas/Auto-GPT/discussions/4280
+## ⚠️ 内存后端弃用 💾
+Milvus、Pinecone 和 Weaviate 内存后端与内存系统的工作不兼容，已在主分支中删除。Redis
+内存存储也暂时删除；我们将尽快合并新的实现。是否在未来再次添加其他后端的内置支持还有待讨论，请随时加入: https://github.com/Significant-Gravitas/Auto-GPT/discussions/4280
 
-## Document support in `read_file` 📄
-Auto-GPT can now read text from document files, with support added for PDF, DOCX, CSV,
-HTML, TeX and more!
+## `read_file` 支持文档 📄
+Auto-GPT 现在可以从文档文件中读取文本，支持 PDF、DOCX、CSV、HTML、TeX 等格式！
 
-## Managing Auto-GPT's access to commands ❌🔧
-You can now disable set of built-in commands through the *DISABLED_COMMAND_CATEGORIES*
-variable in .env. Specific shell commands can also be disabled using *DENY_COMMANDS*,
-or selectively enabled using *ALLOW_COMMANDS*.
+## 管理 Auto-GPT 对命令的访问 ❌🔧
+您现在可以通过.env 中的 *DISABLED_COMMAND_CATEGORIES* 变量禁用一组内置命令。也可以使用 *DENY_COMMANDS* 禁用特定的 shell 命令，
+或使用 *ALLOW_COMMANDS* 有选择地启用它们。
 
-## Further fixes and changes 🛠️
-Other highlights include improvements to self-feedback mode and continuous mode,
-documentation, docker and devcontainer setups, and much more. Most of the improvements
-that were made are not yet visible to users, but will pay off in the long term.
-Take a look at the Release Notes on Github for the full changelog!
+## 更多修复和更改 🛠️
+其他亮点包括 self-feedback 模式和连续模式、文档、Docker 和 devcontainer 设置等方面的改进，以及许多其他改进。
+大部分改进对用户尚不可见，但从长远来看将会有所回报。请查看Github上的发布说明获取完整的更新日志！
 https://github.com/Significant-Gravitas/Auto-GPT/releases

@@ -184,8 +184,8 @@ def start_agent(name: str, task: str, prompt: str, config: Config, model=None) -
     # Remove underscores from name
     voice_name = name.replace("_", " ")
 
-    first_message = f"""You are {name}.  Respond with: "Acknowledged"."""
-    agent_intro = f"{voice_name} here, Reporting for duty!"
+    first_message = f"""你是{name}。回复：“已确认”."""
+    agent_intro = f"{voice_name} 在这里, 确认收到!"
 
     # Create agent
     if config.speak_mode:
@@ -193,12 +193,12 @@ def start_agent(name: str, task: str, prompt: str, config: Config, model=None) -
     key, ack = agent_manager.create_agent(task, first_message, model)
 
     if config.speak_mode:
-        say_text(f"Hello {voice_name}. Your task is as follows. {task}.")
+        say_text(f"你好 {voice_name}. 你的任务如下. {task}.")
 
     # Assign task (prompt), get response
     agent_response = agent_manager.message_agent(key, prompt)
 
-    return f"Agent {name} created with key {key}. First response: {agent_response}"
+    return f"使用密钥 {key} 创建的代理 {name}。第一个响应：{agent_response}"
 
 
 @command("message_agent", "Message GPT Agent", '"key": "<key>", "message": "<message>"')
@@ -208,7 +208,7 @@ def message_agent(key: str, message: str, config: Config) -> str:
     if is_valid_int(key):
         agent_response = AgentManager().message_agent(int(key), message)
     else:
-        return "Invalid key, must be an integer."
+        return "无效键，必须是整数。"
 
     # Speak response
     if config.speak_mode:
