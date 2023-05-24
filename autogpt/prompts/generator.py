@@ -17,18 +17,18 @@ class PromptGenerator:
         self.constraints = []
         self.commands = []
         self.resources = []
-        self.performance_evaluation = []
+        self.performance_evaluation = []"""  """
         self.goals = []
         self.command_registry = None
         self.name = "Bob"
         self.role = "AI"
         self.response_format = {
             "thoughts": {
-                "text": "thought",
-                "reasoning": "reasoning",
-                "plan": "- short bulleted\n- list that conveys\n- long-term plan",
-                "criticism": "constructive self-criticism",
-                "speak": "thoughts summary to say to user",
+                "text": "thought (in Chinese)",
+                "reasoning": "reasoning (in Chinese)",
+                "plan": "- short bulleted\n- list that conveys\n- long-term plan (in Chinese)",
+                "criticism": "constructive self-criticism (in Chinese)",
+                "speak": "thoughts summary to say to user (in Chinese)",
             },
             "command": {"name": "command name", "args": {"arg name": "value"}},
         }
@@ -149,7 +149,7 @@ class PromptGenerator:
             f"Resources:\n{self._generate_numbered_list(self.resources)}\n\n"
             "Performance Evaluation:\n"
             f"{self._generate_numbered_list(self.performance_evaluation)}\n\n"
-            "You should only respond in JSON format as described below \nResponse"
+            "You should only respond in JSON format as described below in Chinese \nResponse"
             f" Format: \n{formatted_response_format} \nEnsure the response can be"
             " parsed by Python json.loads"
         )

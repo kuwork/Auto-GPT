@@ -29,11 +29,11 @@ def retry_openai_api(
         backoff_base float: Base for exponential backoff. Defaults to 2.
         warn_user bool: Whether to warn the user. Defaults to True.
     """
-    retry_limit_msg = f"{Fore.RED}Error: " f"Reached rate limit, passing...{Fore.RESET}"
+    retry_limit_msg = f"{Fore.RED}错误: " f"请求次数达到限制，已跳过...{Fore.RESET}"
     api_key_error_msg = (
-        f"Please double check that you have setup a "
-        f"{Fore.CYAN + Style.BRIGHT}PAID{Style.RESET_ALL} OpenAI API Account. You can "
-        f"read more here: {Fore.CYAN}https://docs.agpt.co/setup/#getting-an-api-key{Fore.RESET}"
+        f"请仔细检查您是否已设置一个"
+        f"{Fore.CYAN + Style.BRIGHT}付费的{Style.RESET_ALL} OpenAI API  帐户. 您可以"
+        f"在这里了解更多信息: {Fore.CYAN}https://docs.agpt.co/setup/#getting-an-api-key{Fore.RESET}"
     )
     backoff_msg = (
         f"{Fore.RED}Error: API Bad gateway. Waiting {{backoff}} seconds...{Fore.RESET}"
@@ -172,12 +172,12 @@ def create_chat_completion(
             break
         except RateLimitError:
             logger.debug(
-                f"{Fore.RED}Error: ", f"Reached rate limit, passing...{Fore.RESET}"
+                f"{Fore.RED}错误: ", f"请求次数达到限制，已跳过。...{Fore.RESET}"
             )
             if not warned_user:
                 logger.double_check(
-                    f"Please double check that you have setup a {Fore.CYAN + Style.BRIGHT}PAID{Style.RESET_ALL} OpenAI API Account. "
-                    + f"You can read more here: {Fore.CYAN}https://docs.agpt.co/setup/#getting-an-api-key{Fore.RESET}"
+                    f"请仔细检查您是否已设置了 {Fore.CYAN + Style.BRIGHT}付费的{Style.RESET_ALL} OpenAI API 帐户. "
+                    + f"您可以在这里了解更多信息: {Fore.CYAN}https://docs.agpt.co/setup/#getting-an-api-key{Fore.RESET}"
                 )
                 warned_user = True
         except (APIError, Timeout) as e:
@@ -186,8 +186,8 @@ def create_chat_completion(
             if attempt == num_retries - 1:
                 raise
         logger.debug(
-            f"{Fore.RED}Error: ",
-            f"API Bad gateway. Waiting {backoff} seconds...{Fore.RESET}",
+            f"{Fore.RED}错误: ",
+            f"API Bad gateway. 等待 {backoff} 秒...{Fore.RESET}",
         )
         time.sleep(backoff)
     if response is None:

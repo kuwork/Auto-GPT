@@ -3,7 +3,7 @@
 DEFAULT_SYSTEM_PROMPT_AICONFIG_AUTOMATIC = """
 Your task is to devise up to 5 highly effective goals and an appropriate role-based name (_GPT) for an autonomous agent, ensuring that the goals are optimally aligned with the successful completion of its assigned task.
 
-The user will provide the task, you will provide only the output in the exact format specified below with no explanation or conversation.
+The user will provide the task, you will provide only the output in the exact format specified below in Chinese with no explanation or conversation.
 
 Example input:
 Help me with marketing my business
@@ -23,7 +23,7 @@ Goals:
 
 DEFAULT_TASK_PROMPT_AICONFIG_AUTOMATIC = (
     "Task: '{{user_prompt}}'\n"
-    "Respond only with the output in the exact format specified in the system prompt, with no explanation or conversation.\n"
+    "Respond only with the output in the exact format specified in Chinese in the system prompt, with no explanation or conversation.\n"
 )
 
 DEFAULT_USER_DESIRE_PROMPT = "Write a wikipedia style article about the project: https://github.com/significant-gravitas/Auto-GPT"  # Default prompt
