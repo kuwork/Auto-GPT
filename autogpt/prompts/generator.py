@@ -17,7 +17,7 @@ class PromptGenerator:
         self.constraints = []
         self.commands = []
         self.resources = []
-        self.performance_evaluation = []"""  """
+        self.performance_evaluation = []
         self.goals = []
         self.command_registry = None
         self.name = "Bob"
